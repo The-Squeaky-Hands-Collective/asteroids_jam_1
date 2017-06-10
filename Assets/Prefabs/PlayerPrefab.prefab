@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 124378281605009100}
   - component: {fileID: 81299166085191980}
   - component: {fileID: 114666744797024556}
+  - component: {fileID: 114534273658507278}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -367,11 +368,23 @@ MonoBehaviour:
   leftTurnAcceleration: 10
   rightTurnAcceleration: 10
   maxAllowedVelocity: 30
-  maximumOrbitValueBeforeIncreasedGravity: 10
   keybindingManager: {fileID: 114608898577216746}
-  projectileTemplate: {fileID: 0}
+  projectileTemplate: {fileID: 1635054236661830, guid: 1ac476a44ca9d3743ace883f90d248a3,
+    type: 2}
   projectileOriginPositionObject: {fileID: 1428667962070740}
   projectileFrontOffset: 1
+--- !u!114 &114534273658507278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939978826168246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 6b2bf5ae30ea0814ca418fedb5b43459, type: 2}
 --- !u!114 &114608898577216746
 MonoBehaviour:
   m_ObjectHideFlags: 1
