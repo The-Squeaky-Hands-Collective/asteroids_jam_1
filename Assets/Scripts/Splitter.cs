@@ -11,15 +11,23 @@ public class Splitter : BaseClass {
     private Rigidbody o_Rigidbody;
 	// Use this for initialization
 	void Start () {
-		if(splitObj == null)
+        Initialize();
+	}
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        if (splitObj == null)
         {
             splitObj = gameObject;
         }
 
         o_Rigidbody = GetComponent<Rigidbody>();
-	}	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(Input.GetKeyDown(KeyCode.G))
         {
             Split();
@@ -46,7 +54,7 @@ public class Splitter : BaseClass {
             if(o_Rigidbody != null)
             {
                 Vector3 dir = (gTemp.transform.position - transform.position).normalized;
-                newRigidbody.AddForce(dir * explosionForce, ForceMode.Impulse);
+                newRigidbody.AddForce(dir * (explosionForce + Random.Range(-explosionForce*0.5f, explosionForce*0.5f)), ForceMode.Impulse);
             }
         }
         if (split_Times <= 0) return;

@@ -38,4 +38,10 @@ public class World : MonoBehaviour
         Vector3 dir = (pos - GetCenter()).normalized;
         return dir * GetRadius() + GetCenter();
     }
+
+    public Vector3 GetUpVector(Vector3 objectPos) //get up vector of the positions object
+    {
+        Vector3 up = (objectPos - GetCenter()).normalized;
+        return up;
+    }
 }

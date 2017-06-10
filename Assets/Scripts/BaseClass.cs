@@ -12,7 +12,7 @@ public class BaseClass : MonoBehaviour
         Initialize();
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         if (world == null)
         {
