@@ -10,9 +10,11 @@ public class Splitter : BaseClass {
     public float scaleMultiplier = 0.5f;
     public float explosionForceMultiplier = 1.25f;
     public float explosionForce = 10;
+    public int decreaseHealth = 1; //hur mkt mindre liv de får per split
     public GameObject splitObj;
 
     private Rigidbody o_Rigidbody;
+    private Health health;
 	// Use this for initialization
 	void Start () {
         Initialize();
@@ -28,13 +30,14 @@ public class Splitter : BaseClass {
         }
 
         o_Rigidbody = GetComponent<Rigidbody>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
     void Update () {
 		if(Input.GetKeyDown(KeyCode.G))
         {
-            Split();
+            health.Damage(1);
         }
 	}
 
@@ -52,22 +55,26 @@ public class Splitter : BaseClass {
 
                 Splitter newSplitter = gTemp.GetComponent<Splitter>();
                 Rigidbody newRigidbody = gTemp.GetComponent<Rigidbody>();
+                Health newHealth = gTemp.GetComponent<Health>();
                 if (newSplitter != null)
                 {
                     newSplitter.split_Particles = (int)(split_Particles * split_Particle_Increase);
                     newSplitter.explosionForce = explosionForce * explosionForceMultiplier;
                     newSplitter.separation_Times = separation_Times - 1;
                 }
-
                 if (o_Rigidbody != null)
                 {
                     Vector3 dir = (gTemp.transform.position - transform.position).normalized;
                     newRigidbody.AddForce(dir * (explosionForce + Random.Range(-explosionForce * 0.5f, explosionForce * 0.5f)), ForceMode.Impulse);
                 }
+                if(newHealth != null)
+                {
+                    newSplitter.health.SetMaxHealth(Mathf.Max(1, health.maxHealth - decreaseHealth));
+                }
             }
         }
-        else return;
-        Destroy(gameObject);
+        //else return;
+        //Destroy(gameObject);
     }
 
 }
