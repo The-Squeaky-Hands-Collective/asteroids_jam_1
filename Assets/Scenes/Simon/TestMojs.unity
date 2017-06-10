@@ -335,9 +335,9 @@ MonoBehaviour:
   playerPrefab: {fileID: 4033503011086582, guid: 259cc3091d0cb6b4c878db9c1414715c,
     type: 2}
   spawnEntity:
-    obj: {fileID: 0}
-    spawnQuantity: 0
-    spawnInterval: 0
+  - obj: {fileID: 1326237072}
+    spawnQuantity: 10
+    spawnInterval: 3
 --- !u!4 &1136829607
 Transform:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 1326237079}
   - component: {fileID: 1326237081}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 1326237072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9438515, y: -1.91, z: 8.352911}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6764097, y: 1.6764088, z: 1.6764088}
   m_Children:
   - {fileID: 878235099}
   m_Father: {fileID: 0}

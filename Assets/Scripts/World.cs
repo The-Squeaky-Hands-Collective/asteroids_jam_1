@@ -11,6 +11,11 @@ public class World : MonoBehaviour
         world = gameObject;
     }
 
+    void Awake()
+    {
+        world = gameObject;
+    }
+
     public float GetRadius()
     {
         return world.transform.localScale.x * 0.5f;

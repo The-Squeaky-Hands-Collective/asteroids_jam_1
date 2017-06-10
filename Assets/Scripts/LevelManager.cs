@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : BaseClass {
     public Transform playerPrefab;
-    public Transform player;
+    [System.NonSerialized] public Transform player;
     public SpawnEntity[] spawnEntity;
 	// Use this for initialization
 	void Start () {
