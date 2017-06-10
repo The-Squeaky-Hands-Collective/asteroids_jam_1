@@ -7,19 +7,13 @@ public class FollowerCamera : MonoBehaviour
     public GameObject objectToFollow;
 
     public float heigthAboveObject = 20f;
-
-    public float thresholdStartFollow = 4;
-    public float thresholdStopFollow = 3;
-
-    // Movement
-    public float maxMovementSpeed = 1f;
+    public float lowThresholdToResetSpeed = 0.5f;
+    public float maxMovementSpeed = 4.7f;
 
     private float currentMovementSpeed = 0f;
-
-    private bool activeFollow = true;
-
     private Vector3 lastMovement = Vector3.zero;
     private Vector3 desiredPositionForCamera = Vector3.zero;
+    private float movementIncrease = 0;
 
     void Start()
     {
@@ -30,26 +24,13 @@ public class FollowerCamera : MonoBehaviour
     {
         ComputeDesiredPosition();
         float distanceToDesiredPosition = (desiredPositionForCamera - transform.position).magnitude;
-
-        if (!activeFollow && distanceToDesiredPosition > thresholdStartFollow)
+        if(distanceToDesiredPosition < lowThresholdToResetSpeed)
         {
-            activeFollow = true;
-        }
-        else if(activeFollow && distanceToDesiredPosition < thresholdStopFollow)
-        {
-            activeFollow = false;
-            currentMovementSpeed = 0;
+            currentMovementSpeed = 0f;
+            movementIncrease = 0;
         }
 
-        if (activeFollow)
-        {
-            MoveTowardsDesiredPosition();
-        }
-        else
-        {
-            ExtrapolateMovement();
-        }
-
+        MoveTowardsDesiredPosition();
         transform.LookAt(objectToFollow.transform.position);
     }
 
@@ -69,13 +50,9 @@ public class FollowerCamera : MonoBehaviour
         lastMovement = transform.position - lastPosition;
     }
 
-    private void ExtrapolateMovement()
-    {
-        transform.position += lastMovement;
-    }
-
     private float ComputeSpeedIncrease(float speed)
     {
-        return speed + 0.05f;
+        movementIncrease += 0.009f;
+        return speed + (0.01f * movementIncrease * movementIncrease);
     }
 }
