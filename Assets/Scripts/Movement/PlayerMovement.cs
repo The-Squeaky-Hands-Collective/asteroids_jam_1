@@ -12,13 +12,14 @@ public class PlayerMovement : EntityMovement
     // Projectiles
     public GameObject projectileTemplate;
     public GameObject projectileOriginPositionObject;
+    public float projectileFrontOffset = 1.0f;
 
     // Input
     protected AvailablePlayerActions availablePlayerActions;
 
     protected override void Start()
     {
-        transform.position = world.transform.position + new Vector3(0f, 0f, -world.transform.localScale.x * 0.5f);
+        transform.position = world.transform.position + new Vector3(0f, 0f, -world.transform.localScale.x * 0.5f); // TODO Make random?
         availablePlayerActions = keybindingManager.GetCurrentAvailablePlayerActions();
         base.Start();
     }
@@ -29,12 +30,10 @@ public class PlayerMovement : EntityMovement
 
         if(availablePlayerActions.shoot.WasPressed)
         {
-            Vector3 projectilePosition = (projectileOriginPositionObject.transform.position + projectileOriginPositionObject.transform.forward * 1f);
+            Vector3 projectilePosition = (projectileOriginPositionObject.transform.position + projectileOriginPositionObject.transform.forward * projectileFrontOffset);
             GameObject projectile = Instantiate(projectileTemplate, projectilePosition, projectileTemplate.transform.localRotation);
             projectile.transform.forward = projectileOriginPositionObject.transform.forward;
             projectile.SetActive(true);
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 
@@ -47,14 +46,11 @@ public class PlayerMovement : EntityMovement
 
         if (availablePlayerActions.rotateLeft.State)
         {
-            Debug.Log("Left");
             rigidbody.AddTorque(-transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
 
         if (availablePlayerActions.rotateRight.State)
         {
-            Debug.Log("Right");
-
             rigidbody.AddTorque(transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
     }
