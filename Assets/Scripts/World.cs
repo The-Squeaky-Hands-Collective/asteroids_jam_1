@@ -25,4 +25,10 @@ public class World : MonoBehaviour {
         Vector3 randomDir = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
         return (randomDir * GetRadius() + GetCenter());
     }
+
+    public Vector3 GetRandomPointAround(Vector3 aroundPos, float random_Offset)
+    {
+        Vector3 randomDir = ((aroundPos + new Vector3(Random.Range(-random_Offset, random_Offset), Random.Range(-random_Offset, random_Offset), Random.Range(-random_Offset, random_Offset))) - GetCenter()).normalized;
+        return (randomDir * GetRadius() + GetCenter());
+    }
 }
