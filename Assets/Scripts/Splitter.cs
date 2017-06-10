@@ -25,19 +25,19 @@ public class Splitter : BaseClass {
     {
         for(int i = 0; i < split_Times; i++)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-transform.localScale.x, transform.localScale.x), Random.Range(-transform.localScale.y, transform.localScale.y), Random.Range(-transform.localScale.z, transform.localScale.z));
+            Vector3 randomPos = new Vector3(Random.Range(-transform.localScale.x, transform.localScale.x), Random.Range(-transform.localScale.y, transform.localScale.y), Random.Range(-transform.localScale.z, transform.localScale.z)) * 0.5f;
 
             GameObject gTemp = Instantiate(splitObj.gameObject);
             gTemp.transform.localScale = transform.localScale * scaleMultiplier;
-            gTemp.transform.position = world.GetRandomPointAround(randomPos, 0);
+            gTemp.transform.position = world.GetRandomPointAround(randomPos + transform.position, 0);
 
             Splitter newSplitter = gTemp.GetComponent<Splitter>();
             if (newSplitter != null)
             {
-                newSplitter.split_Times = split_Times--;
+                newSplitter.split_Times = split_Times-1;
             }
         }
-
+        if (split_Times <= 0) return;
         Destroy(gameObject);
     }
 
