@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : BaseClass {
+public class Health : BaseClass
+{
     public int maxHealth = 3;
     [System.NonSerialized] public int currHealth;
 
@@ -22,7 +23,7 @@ public class Health : BaseClass {
     {
         currHealth -= damage;
 
-        if(currHealth <= 0)
+        if (currHealth <= 0)
         {
             Die();
             return false;
@@ -36,10 +37,17 @@ public class Health : BaseClass {
     public void Die()
     {
         Splitter splitter = GetComponent<Splitter>();
-        if(splitter != null)
+        if (splitter != null)
         {
             splitter.Split();
         }
+
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            return;
+        }
+
         Destroy(gameObject);
     }
 }
