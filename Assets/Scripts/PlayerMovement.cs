@@ -17,7 +17,6 @@ public class PlayerMovement : BaseClass
     private new Rigidbody rigidbody;
 
     // Gravity
-    private float objectGravity = 9.81f;
     private Vector3 gravityDirection = Vector3.zero;
     private float gravityScale = 1.0f;
 
@@ -56,7 +55,7 @@ public class PlayerMovement : BaseClass
 
     private void ApplyGravity()
     {
-        Vector3 gravity = objectGravity * gravityScale * gravityDirection;
+        Vector3 gravity = gravityConstant * gravityScale * gravityDirection;
         rigidbody.AddForce(gravity, ForceMode.Acceleration);
     }
 
