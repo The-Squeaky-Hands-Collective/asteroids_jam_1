@@ -32,4 +32,10 @@ public class World : MonoBehaviour
         Vector3 randomDir = ((aroundPos + new Vector3(Random.Range(-random_Offset, random_Offset), Random.Range(-random_Offset, random_Offset), Random.Range(-random_Offset, random_Offset))) - GetCenter()).normalized;
         return (randomDir * GetRadius() + GetCenter());
     }
+
+    public Vector3 GetPointOn(Vector3 pos)
+    {
+        Vector3 dir = (pos - GetCenter()).normalized;
+        return dir * GetRadius() + GetCenter();
+    }
 }
