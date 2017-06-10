@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Splitter : BaseClass {
-    public int split_Times = 2;
+    public int separation_Times = 2; //hur många gånger den kan fortsätta dela sig
+
+    public int split_Particles = 2; //hur många partiklar
+    public float split_Particle_Increase = 1.5f; //hur många extra delningar det blir per delning
     public float scaleMultiplier = 0.5f;
+    public float explosionForceMultiplier = 1.25f;
     public float explosionForce = 10;
     public GameObject splitObj;
 
@@ -36,28 +40,33 @@ public class Splitter : BaseClass {
 
     public void Split()
     {
-        for(int i = 0; i < split_Times; i++)
+        if (separation_Times > 0)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-transform.localScale.x, transform.localScale.x), Random.Range(-transform.localScale.y, transform.localScale.y), Random.Range(-transform.localScale.z, transform.localScale.z)) * 0.5f;
-
-            GameObject gTemp = Instantiate(splitObj.gameObject);
-            gTemp.transform.localScale = transform.localScale * scaleMultiplier;
-            gTemp.transform.position = world.GetRandomPointAround(randomPos + transform.position, 0);
-
-            Splitter newSplitter = gTemp.GetComponent<Splitter>();
-            Rigidbody newRigidbody = gTemp.GetComponent<Rigidbody>();
-            if (newSplitter != null)
+            for (int i = 0; i < split_Particles; i++)
             {
-                newSplitter.split_Times = split_Times-1;
-            }
+                Vector3 randomPos = new Vector3(Random.Range(-transform.localScale.x, transform.localScale.x), Random.Range(-transform.localScale.y, transform.localScale.y), Random.Range(-transform.localScale.z, transform.localScale.z)) * 0.5f;
 
-            if(o_Rigidbody != null)
-            {
-                Vector3 dir = (gTemp.transform.position - transform.position).normalized;
-                newRigidbody.AddForce(dir * (explosionForce + Random.Range(-explosionForce*0.5f, explosionForce*0.5f)), ForceMode.Impulse);
+                GameObject gTemp = Instantiate(splitObj.gameObject);
+                gTemp.transform.localScale = transform.localScale * scaleMultiplier;
+                gTemp.transform.position = world.GetRandomPointAround(randomPos + transform.position, 0);
+
+                Splitter newSplitter = gTemp.GetComponent<Splitter>();
+                Rigidbody newRigidbody = gTemp.GetComponent<Rigidbody>();
+                if (newSplitter != null)
+                {
+                    newSplitter.split_Particles = (int)(split_Particles * split_Particle_Increase);
+                    newSplitter.explosionForce = explosionForce * explosionForceMultiplier;
+                    newSplitter.separation_Times = separation_Times - 1;
+                }
+
+                if (o_Rigidbody != null)
+                {
+                    Vector3 dir = (gTemp.transform.position - transform.position).normalized;
+                    newRigidbody.AddForce(dir * (explosionForce + Random.Range(-explosionForce * 0.5f, explosionForce * 0.5f)), ForceMode.Impulse);
+                }
             }
         }
-        if (split_Times <= 0) return;
+        else return;
         Destroy(gameObject);
     }
 
