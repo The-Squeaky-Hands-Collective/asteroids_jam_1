@@ -44,11 +44,7 @@ public class PlayerMovement : BaseClass
     {
         ComputeGravityDirection();
         ApplyGravity();
-        ApplyLocalRotation();
-    }
-
-    private void LateUpdate()
-    {
+        ComputeTransformRelativeUp();
         ComputeForces();
     }
 
@@ -64,7 +60,7 @@ public class PlayerMovement : BaseClass
         rigidbody.AddForce(gravity, ForceMode.Acceleration);
     }
 
-    private void ApplyLocalRotation()
+    private void ComputeTransformRelativeUp()
     {
         transform.rotation = Quaternion.LookRotation(-gravityDirection, -transform.forward);
         transform.Rotate(Vector3.right, 90f);
