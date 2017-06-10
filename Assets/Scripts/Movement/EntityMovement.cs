@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class EntityMovement : BaseClass
 {
     // Forces
@@ -10,8 +11,6 @@ public abstract class EntityMovement : BaseClass
     public float leftTurnAcceleration;
     public float rightTurnAcceleration;
     public float maxAllowedVelocity;
-
-    public float maximumOrbitValueBeforeIncreasedGravity = 10f;
 
     // Object
     protected new Rigidbody rigidbody;

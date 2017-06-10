@@ -9,7 +9,7 @@ public class WeaponCollision : MonoBehaviour
 
     private Health health;
 
-    void Start()
+    void Awake()
     {
         health = GetComponent<Health>();
     }
