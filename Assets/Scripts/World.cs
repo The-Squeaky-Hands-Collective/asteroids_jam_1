@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : MonoBehaviour {
+public class World : MonoBehaviour
+{
     [System.NonSerialized] public GameObject world;
-	// Use this for initialization
-	void Start () {
-        world = gameObject;        
-	}
-	
+
+    void Start()
+    {
+        world = gameObject;
+    }
 
     public float GetRadius()
     {
