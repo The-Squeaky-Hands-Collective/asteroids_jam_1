@@ -294,8 +294,8 @@ GameObject:
   - component: {fileID: 1599594442}
   - component: {fileID: 1599594441}
   - component: {fileID: 1599594440}
-  - component: {fileID: 1599594439}
   - component: {fileID: 1599594444}
+  - component: {fileID: 1599594439}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -311,13 +311,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599594438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc0b83bea19d404080c777beaae53a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 89fea993455e0084d989912bb303700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keybindingManager: {fileID: 1839724662}
-  forwardAcceleration: 10
-  leftTurnAcceleration: 5
-  rightTurnAcceleration: 5
+  forwardAcceleration: 15
+  leftTurnAcceleration: 10
+  rightTurnAcceleration: 10
 --- !u!23 &1599594440
 MeshRenderer:
   m_ObjectHideFlags: 0

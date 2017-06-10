@@ -3,27 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : BaseClass
+public abstract class EntityMovement : BaseClass
 {
     // Input
     public KeybindingManager keybindingManager;
 
     // Forces
-    public float forwardAcceleration = 10.0f;
-    public float leftTurnAcceleration = 5.0f;
-    public float rightTurnAcceleration = 5.0f;
+    public float forwardAcceleration;
+    public float leftTurnAcceleration;
+    public float rightTurnAcceleration;
 
     // Object
-    private new Rigidbody rigidbody;
+    protected new Rigidbody rigidbody;
 
     // Gravity
-    private Vector3 gravityDirection = Vector3.zero;
-    private float gravityScale = 1.0f;
+    protected Vector3 gravityDirection = Vector3.zero;
+    protected float gravityScale = 1.0f;
 
     // Input
-    private AvailablePlayerActions availablePlayerActions;
+    protected AvailablePlayerActions availablePlayerActions;
 
-    void Start()
+    protected virtual void Start()
     {
         transform.position = world.transform.position + new Vector3(0f, 0f, -world.transform.localScale.x * 0.5f);
         rigidbody = GetComponent<Rigidbody>();
@@ -39,7 +39,7 @@ public class PlayerMovement : BaseClass
         availablePlayerActions = keybindingManager.GetCurrentAvailablePlayerActions();
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         ComputeGravityDirection();
         ApplyGravity();
@@ -65,26 +65,10 @@ public class PlayerMovement : BaseClass
         transform.Rotate(Vector3.right, 90f);
     }
 
-    private void ComputeForces()
-    {
-        if (availablePlayerActions.forward.State)
-        {
-            rigidbody.AddForce(transform.forward * forwardAcceleration, ForceMode.Acceleration);
-        }
-
-        if (availablePlayerActions.rotateLeft.State)
-        {
-            rigidbody.AddTorque(-transform.up * leftTurnAcceleration, ForceMode.Acceleration);
-        }
-
-        if (availablePlayerActions.rotateRight.State)
-        {
-            rigidbody.AddTorque(transform.up * leftTurnAcceleration, ForceMode.Acceleration);
-        }
-    }
+    protected abstract void ComputeForces();
 
     private void LimitVelocity()
     {
-
+        // TODO
     }
 }

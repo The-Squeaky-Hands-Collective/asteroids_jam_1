@@ -15,11 +15,6 @@ public class FollowerCamera : MonoBehaviour
     private Vector3 desiredPositionForCamera = Vector3.zero;
     private float movementIncrease = 0;
 
-    void Start()
-    {
-
-    }
-
     void FixedUpdate()
     {
         ComputeDesiredPosition();
