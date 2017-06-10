@@ -27,6 +27,8 @@ public class KeybindingManager : MonoBehaviour
         defaultPlayerActions.jump.AddDefaultBinding(Key.Space);
         defaultPlayerActions.jump.AddDefaultBinding(InputControlType.Action1);
 
+        defaultPlayerActions.shoot.AddDefaultBinding(Key.Q);
+
         currentKeyBindings = defaultPlayerActions;
     }
 

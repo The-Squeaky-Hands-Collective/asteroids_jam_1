@@ -9,6 +9,7 @@ public class AvailablePlayerActions : PlayerActionSet
     public PlayerAction rotateRight;
     public PlayerAction forward;
     public PlayerAction jump;
+    public PlayerAction shoot;
 
     public AvailablePlayerActions()
     {
@@ -16,5 +17,6 @@ public class AvailablePlayerActions : PlayerActionSet
         rotateRight = CreatePlayerAction("Rotate Right");
         forward = CreatePlayerAction("Move forward");
         jump = CreatePlayerAction("Jump");
+        shoot = CreatePlayerAction("Basic Shoot");
     }
 }

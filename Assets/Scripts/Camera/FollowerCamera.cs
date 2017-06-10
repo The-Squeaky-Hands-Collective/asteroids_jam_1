@@ -11,7 +11,6 @@ public class FollowerCamera : MonoBehaviour
     public float maxMovementSpeed = 4.7f;
 
     private float currentMovementSpeed = 0f;
-    private Vector3 lastMovement = Vector3.zero;
     private Vector3 desiredPositionForCamera = Vector3.zero;
     private float movementIncrease = 0;
 
@@ -40,9 +39,7 @@ public class FollowerCamera : MonoBehaviour
         currentMovementSpeed = Mathf.Clamp(currentMovementSpeed, 0, maxMovementSpeed);
 
         Vector3 direction = (desiredPositionForCamera - transform.position).normalized;
-        Vector3 lastPosition = transform.position;
         transform.position = Vector3.Lerp(transform.position, desiredPositionForCamera, Time.deltaTime * currentMovementSpeed);
-        lastMovement = transform.position - lastPosition;
     }
 
     private float ComputeSpeedIncrease(float speed)
