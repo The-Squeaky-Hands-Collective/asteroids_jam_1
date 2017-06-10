@@ -18,5 +18,6 @@ public class ProjectileMovement : EntityMovement
 
     protected override void ComputeForces()
     {
+        rigidbody.AddForce(transform.forward * forwardAcceleration, ForceMode.Acceleration);
     }
 }

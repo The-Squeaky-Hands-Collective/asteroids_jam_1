@@ -11,6 +11,8 @@ public abstract class EntityMovement : BaseClass
     public float rightTurnAcceleration;
     public float maxAllowedVelocity;
 
+    public float maximumOrbitValueBeforeIncreasedGravity = 10f;
+
     // Object
     protected new Rigidbody rigidbody;
 
@@ -27,6 +29,7 @@ public abstract class EntityMovement : BaseClass
     protected virtual void FixedUpdate()
     {
         ComputeGravityDirection();
+        PreventOrbiting();
         ApplyGravity();
         ComputeTransformRelativeUp();
         ComputeForces();
@@ -61,5 +64,10 @@ public abstract class EntityMovement : BaseClass
         {
             rigidbody.velocity = currentVelocity.normalized * maxAllowedVelocity;
         }
+    }
+        
+    protected virtual void PreventOrbiting()
+    {
+        transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.55f);
     }
 }

@@ -33,6 +33,8 @@ public class PlayerMovement : EntityMovement
             GameObject projectile = Instantiate(projectileTemplate, projectilePosition, projectileTemplate.transform.localRotation);
             projectile.transform.forward = projectileOriginPositionObject.transform.forward;
             projectile.SetActive(true);
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 
@@ -45,11 +47,14 @@ public class PlayerMovement : EntityMovement
 
         if (availablePlayerActions.rotateLeft.State)
         {
+            Debug.Log("Left");
             rigidbody.AddTorque(-transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
 
         if (availablePlayerActions.rotateRight.State)
         {
+            Debug.Log("Right");
+
             rigidbody.AddTorque(transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
     }
