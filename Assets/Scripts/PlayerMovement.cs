@@ -10,6 +10,8 @@ public class PlayerMovement : BaseClass
 
     // Forces
     public float forwardAcceleration = 10.0f;
+    public float leftTurnAcceleration = 5.0f;
+    public float rightTurnAcceleration = 5.0f;
 
     // Object
     private new Rigidbody rigidbody;
@@ -24,7 +26,7 @@ public class PlayerMovement : BaseClass
 
     void Start()
     {
-        transform.position = world.transform.position + new Vector3(world.transform.localScale.x * 0.5f, 0f, 0f);
+        transform.position = world.transform.position + new Vector3(0f, 0f, -world.transform.localScale.x * 0.5f);
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false; // Disable engine gravity
 
@@ -43,7 +45,10 @@ public class PlayerMovement : BaseClass
         ComputeGravityDirection();
         ApplyGravity();
         ApplyLocalRotation();
+    }
 
+    private void LateUpdate()
+    {
         ComputeForces();
     }
 
@@ -61,7 +66,8 @@ public class PlayerMovement : BaseClass
 
     private void ApplyLocalRotation()
     {
-        transform.up = -gravityDirection;
+        transform.rotation = Quaternion.LookRotation(-gravityDirection, -transform.forward);
+        transform.Rotate(Vector3.right, 90f);
     }
 
     private void ComputeForces()
@@ -69,6 +75,16 @@ public class PlayerMovement : BaseClass
         if (availablePlayerActions.forward.State)
         {
             rigidbody.AddForce(transform.forward * forwardAcceleration, ForceMode.Acceleration);
+        }
+
+        if (availablePlayerActions.rotateLeft.State)
+        {
+            rigidbody.AddTorque(-transform.up * leftTurnAcceleration, ForceMode.Acceleration);
+        }
+
+        if (availablePlayerActions.rotateRight.State)
+        {
+            rigidbody.AddTorque(transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
     }
 
