@@ -17,8 +17,18 @@ public class MovingObject : BaseClass {
         o_rigidbody = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
+    void Update()
+    {
+        //transform.position = Vector3.Lerp(transform.position, world.GetPointOn(transform.position), Time.deltaTime * 2); //placera mig på spheren
+
+
+    }
+
     void FixedUpdate () {
-        //transform.position = world.GetPointOn(transform.position); //placera mig på spheren
+        if(Vector3.Distance(transform.position, world.GetPointOn(transform.position)) > (transform.localScale.x*0.61f))
+        {
+            MoveToGround();
+        }
 
         CalculateVelocity();
     }
@@ -32,8 +42,14 @@ public class MovingObject : BaseClass {
         o_rigidbody.velocity = cross2 * length;
     }
 
-    void AddGravity()
+    void MoveToGround()
     {
-
+        Vector3 dir = (world.GetPointOn(transform.position) - transform.position).normalized;
+        transform.position += dir * 2 * Time.fixedDeltaTime;
     }
+
+    //void AddGravity()
+    //{
+    //    o_rigidbody.AddForce(gravityConstant * -world.GetUpVector(transform.position));
+    //}
 }
