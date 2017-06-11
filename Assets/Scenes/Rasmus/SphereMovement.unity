@@ -423,12 +423,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 135458483850395738, guid: 72761591cebe10f44bc1aa0001052eab,
+    - target: {fileID: 4076891144845528, guid: 72761591cebe10f44bc1aa0001052eab, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076891144845528, guid: 72761591cebe10f44bc1aa0001052eab, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076891144845528, guid: 72761591cebe10f44bc1aa0001052eab, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 54901730994795798, guid: 72761591cebe10f44bc1aa0001052eab,
         type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2aaa28fceb4c033428e7223f0a5ecf29,
-        type: 2}
+      propertyPath: m_Mass
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72761591cebe10f44bc1aa0001052eab, type: 2}
   m_IsPrefabParent: 0
@@ -506,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fea993455e0084d989912bb303700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityConstant: 9.81
   forwardAcceleration: 15
   maxAllowedVelocity: 30
   keybindingManager: {fileID: 0}
@@ -605,6 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191ff8f1c67f111438590c78cdaf8cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityConstant: 9.81
   maxHealth: 3
 --- !u!1 &2115737421
 GameObject:
@@ -824,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fd9167335f81641bb9f48711026635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityConstant: 9.81
   forwardAcceleration: 18
   maxAllowedVelocity: 30
 --- !u!114 &2132849866
@@ -853,4 +867,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191ff8f1c67f111438590c78cdaf8cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityConstant: 9.81
   maxHealth: 1

@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class World : MonoBehaviour
 {
     [System.NonSerialized] public GameObject world;
 
-    void Start()
-    {
-        world = gameObject;
-    }
+    protected new Rigidbody rigidbody;
 
     void Awake()
     {
         world = gameObject;
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.mass = GetDiameter() * 1000f;
     }
 
     public float GetRadius()
     {
         return world.transform.localScale.x * 0.5f;
+    }
+
+    public float GetDiameter()
+    {
+        return world.transform.localScale.x;
     }
 
     public Vector3 GetCenter()
@@ -54,5 +59,10 @@ public class World : MonoBehaviour
     {
         Vector3 up = (objectPos - GetCenter()).normalized;
         return up;
+    }
+
+    public float GetMass()
+    {
+        return rigidbody.mass;
     }
 }

@@ -16,6 +16,7 @@ public abstract class EntityMovement : BaseClass
     // Gravity
     protected Vector3 gravityDirection = Vector3.zero;
     protected float gravityScale = 1.0f;
+    protected Vector3 vectorToGravityCenter = Vector3.zero;
 
     protected virtual void Start()
     {
@@ -25,6 +26,7 @@ public abstract class EntityMovement : BaseClass
 
     protected virtual void FixedUpdate()
     {
+        ComputeVectorToGravityCenter();
         ComputeGravityDirection();
         PreventOrbiting();
         ApplyGravity();
@@ -33,16 +35,24 @@ public abstract class EntityMovement : BaseClass
         LimitVelocity();
     }
 
+    private void ComputeVectorToGravityCenter()
+    {
+        vectorToGravityCenter = world.transform.position - transform.position;
+    }
+
     private void ComputeGravityDirection()
     {
-        Vector3 relativeVetor = world.transform.position - transform.position;
-        gravityDirection = (relativeVetor).normalized;
+        gravityDirection = vectorToGravityCenter.normalized;
     }
 
     private void ApplyGravity()
     {
-        Vector3 gravity = gravityConstant * gravityScale * gravityDirection;
-        rigidbody.AddForce(gravity, ForceMode.Acceleration);
+        float gravityForce = gravityConstant * gravityScale * (rigidbody.mass * world.GetMass()) / vectorToGravityCenter.magnitude;
+        Debug.Log("Distance: " + vectorToGravityCenter.magnitude + " Force: " + gravityForce);
+      //  GUI.Button(Rect);
+
+    //    rigidbody.AddForce(gravityDirection * world.GetDiameter() * 0.2f, ForceMode.Acceleration);
+        rigidbody.AddForce(gravityDirection * gravityForce, ForceMode.Acceleration);
     }
 
     private void ComputeTransformRelativeUp()
@@ -65,6 +75,6 @@ public abstract class EntityMovement : BaseClass
 
     protected virtual void PreventOrbiting()
     {
-        transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.55f);
+       // transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.55f);
     }
 }
