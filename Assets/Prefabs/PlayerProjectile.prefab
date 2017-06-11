@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114550968938455950}
   - component: {fileID: 114734976052013420}
   m_Layer: 9
-  m_Name: Skott _)
+  m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,8 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardAcceleration: 25
-  leftTurnAcceleration: 10
-  rightTurnAcceleration: 10
   maxAllowedVelocity: 45
 --- !u!114 &114550968938455950
 MonoBehaviour:
