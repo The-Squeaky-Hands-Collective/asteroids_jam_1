@@ -56,6 +56,14 @@ public class Splitter : BaseClass
                 gTemp.transform.localScale = transform.localScale * scaleMultiplier;
                 gTemp.transform.position = world.GetRandomPointAround(randomPos + transform.position, 0);
 
+                gTemp.name = gTemp.name + Random.Range(0, 100000).ToString();
+
+                MonoBehaviour[] comps = GetComponents<MonoBehaviour>();
+                foreach (MonoBehaviour c in comps)
+                {
+                    c.enabled = true;
+                }
+
                 Splitter newSplitter = gTemp.GetComponent<Splitter>();
                 Rigidbody newRigidbody = gTemp.GetComponent<Rigidbody>();
                 Health newHealth = gTemp.GetComponent<Health>();
