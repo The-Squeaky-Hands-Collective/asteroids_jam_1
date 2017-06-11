@@ -13,7 +13,7 @@ public class AIEnemyMovement : EntityMovement
     protected override void Start()
     {
         base.Start();
-        if(targetIsPlayer)
+        if (targetIsPlayer)
         {
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
             if (player.Length != 1)
@@ -41,7 +41,7 @@ public class AIEnemyMovement : EntityMovement
         }
         else
         {
-            if(!goingRandom)
+            if (!goingRandom)
             {
                 goingRandom = true;
                 transform.Rotate(transform.up, Random.Range(0f, 360f));

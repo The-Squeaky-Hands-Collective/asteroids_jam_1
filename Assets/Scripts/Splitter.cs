@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Splitter : BaseClass {
+public class Splitter : BaseClass
+{
     public int separation_Times = 2; //hur många gånger den kan fortsätta dela sig
 
     public int split_Particles = 2; //hur många partiklar
@@ -15,10 +16,11 @@ public class Splitter : BaseClass {
 
     private Rigidbody o_Rigidbody;
     private Health health;
-	// Use this for initialization
-	void Start () {
+
+    void Start()
+    {
         Initialize();
-	}
+    }
 
     public override void Initialize()
     {
@@ -34,12 +36,13 @@ public class Splitter : BaseClass {
     }
 
     // Update is called once per frame
-    void Update () {
-		if(Input.GetKeyDown(KeyCode.G))
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
         {
             health.Damage(1);
         }
-	}
+    }
 
     public void Split()
     {
@@ -67,7 +70,7 @@ public class Splitter : BaseClass {
                     Vector3 dir = (gTemp.transform.position - transform.position).normalized;
                     newRigidbody.AddForce(dir * (explosionForce + Random.Range(-explosionForce * 0.5f, explosionForce * 0.5f)), ForceMode.Impulse);
                 }
-                if(newHealth != null)
+                if (newHealth != null)
                 {
                     newSplitter.health.SetMaxHealth(Mathf.Max(1, health.maxHealth - decreaseHealth));
                 }

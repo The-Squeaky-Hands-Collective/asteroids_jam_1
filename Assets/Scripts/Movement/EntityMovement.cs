@@ -64,7 +64,7 @@ public abstract class EntityMovement : BaseClass
             rigidbody.velocity = currentVelocity.normalized * maxAllowedVelocity;
         }
     }
-        
+
     protected virtual void PreventOrbiting()
     {
         transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.55f);

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : BaseClass {
+public class LevelManager : BaseClass
+{
     public Transform playerPrefab;
     [System.NonSerialized] public Transform player;
     public SpawnEntity[] spawnEntity;
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+    void Start()
+    {
+
+    }
 
     public override void Initialize()
     {

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MovingObject : BaseClass {
+public class MovingObject : BaseClass
+{
     Rigidbody o_rigidbody;
 
     void Start()
@@ -16,7 +17,7 @@ public class MovingObject : BaseClass {
         base.Initialize();
         o_rigidbody = GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         //transform.position = Vector3.Lerp(transform.position, world.GetPointOn(transform.position), Time.deltaTime * 2); //placera mig på spheren
@@ -27,8 +28,8 @@ public class MovingObject : BaseClass {
         }
     }
 
-    void FixedUpdate () {
-
+    void FixedUpdate()
+    {
         CalculateVelocity();
     }
 

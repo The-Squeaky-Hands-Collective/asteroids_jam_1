@@ -18,7 +18,7 @@ public class FollowerCamera : MonoBehaviour
     {
         ComputeDesiredPosition();
         float distanceToDesiredPosition = (desiredPositionForCamera - transform.position).magnitude;
-        if(distanceToDesiredPosition < lowThresholdToResetSpeed)
+        if (distanceToDesiredPosition < lowThresholdToResetSpeed)
         {
             currentMovementSpeed = 0f;
             movementIncrease = 0;
