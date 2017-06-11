@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 65528096286445844}
   - component: {fileID: 54742052212881018}
   - component: {fileID: 114409072750331232}
+  - component: {fileID: 114814301668952052}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1238,9 +1239,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 1907210017184456}
-  heigthAboveObject: 20
+  heigthAboveObject: 40
   lowThresholdToResetSpeed: 0.5
   maxMovementSpeed: 3
+--- !u!114 &114814301668952052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1907210017184456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191ff8f1c67f111438590c78cdaf8cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityConstant: 9.81
+  maxHealth: 3
 --- !u!124 &124378281605009100
 Behaviour:
   m_ObjectHideFlags: 1

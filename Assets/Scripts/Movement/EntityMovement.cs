@@ -48,7 +48,7 @@ public abstract class EntityMovement : BaseClass
     private void ApplyGravity()
     {
         float gravityForce = gravityConstant * gravityScale * (rigidbody.mass * world.GetMass()) / vectorToGravityCenter.magnitude;
-        Debug.Log("Distance: " + vectorToGravityCenter.magnitude + " Force: " + gravityForce);
+        //Debug.Log("Distance: " + vectorToGravityCenter.magnitude + " Force: " + gravityForce);
       //  GUI.Button(Rect);
 
     //    rigidbody.AddForce(gravityDirection * world.GetDiameter() * 0.2f, ForceMode.Acceleration);
