@@ -163,7 +163,7 @@ MonoBehaviour:
   explosionForceMultiplier: 1.25
   explosionForce: 3
   decreaseHealth: 1
-  splitObj: {fileID: 0}
+  splitObj: {fileID: 1704607331821720}
 --- !u!114 &114768370052719940
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -48,6 +48,8 @@ public class Health : BaseClass
             return;
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 15);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

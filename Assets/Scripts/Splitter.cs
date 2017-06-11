@@ -53,6 +53,7 @@ public class Splitter : BaseClass
                 Vector3 randomPos = new Vector3(Random.Range(-transform.localScale.x, transform.localScale.x), Random.Range(-transform.localScale.y, transform.localScale.y), Random.Range(-transform.localScale.z, transform.localScale.z)) * 0.5f;
 
                 GameObject gTemp = Instantiate(splitObj.gameObject);
+                gTemp.SetActive(true);
                 gTemp.transform.localScale = transform.localScale * scaleMultiplier;
                 gTemp.transform.position = world.GetRandomPointAround(randomPos + transform.position, 0);
 
