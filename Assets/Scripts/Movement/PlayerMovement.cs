@@ -42,8 +42,6 @@ public class PlayerMovement : EntityMovement
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
-
     }
 
     protected override void ComputeForces()
