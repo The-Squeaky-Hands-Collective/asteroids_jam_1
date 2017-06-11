@@ -13,7 +13,7 @@ public class World : MonoBehaviour
     {
         world = gameObject;
         rigidbody = GetComponent<Rigidbody>();
-        rigidbody.mass = GetDiameter() * 1000f;
+        rigidbody.mass = GetDiameter() * GetDiameter() * 5f;
     }
 
     public float GetRadius()

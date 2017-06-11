@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseClass : MonoBehaviour
 {
     public static World world;
-    public float gravityConstant = 9.81f;
+    public static float gravityConstant = 0.001f;
 
     void Awake()
     {

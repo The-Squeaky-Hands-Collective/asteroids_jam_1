@@ -49,6 +49,7 @@ public class PlayerMovement : EntityMovement
         if (availablePlayerActions.forward.State)
         {
             rigidbody.AddForce(transform.forward * forwardAcceleration, ForceMode.Acceleration);
+           // rigidbody.AddForce(transform.forward * forwardAcceleration * 0.1f * world.GetRadius(), ForceMode.Acceleration);
         }
 
         if (availablePlayerActions.rotateLeft.State)
@@ -60,11 +61,21 @@ public class PlayerMovement : EntityMovement
         {
             rigidbody.AddTorque(transform.up * leftTurnAcceleration, ForceMode.Acceleration);
         }
+
+        if (availablePlayerActions.jump.State)
+        {
+            rigidbody.AddForce(transform.up * forwardAcceleration, ForceMode.Acceleration);
+        }
     }
 
     protected override void LimitVelocity()
     {
         // TODO Might want to implement it's own version of it. It does not always make sense to limit velocity like this.
         base.LimitVelocity();
+    }
+
+    protected override void PreventOrbiting()
+    {
+        return;
     }
 }

@@ -14,8 +14,9 @@ public abstract class EntityMovement : BaseClass
     protected new Rigidbody rigidbody;
 
     // Gravity
-    protected Vector3 gravityDirection = Vector3.zero;
     protected float gravityScale = 1.0f;
+    protected Vector3 gravityDirection = Vector3.zero;
+    protected float gravityForce = 0.0f;
     protected Vector3 vectorToGravityCenter = Vector3.zero;
 
     protected virtual void Start()
@@ -28,11 +29,12 @@ public abstract class EntityMovement : BaseClass
     {
         ComputeVectorToGravityCenter();
         ComputeGravityDirection();
-        PreventOrbiting();
+        ComputeGravityForce();
         ApplyGravity();
         ComputeTransformRelativeUp();
         ComputeForces();
         LimitVelocity();
+        PreventOrbiting();
     }
 
     private void ComputeVectorToGravityCenter()
@@ -45,13 +47,27 @@ public abstract class EntityMovement : BaseClass
         gravityDirection = vectorToGravityCenter.normalized;
     }
 
+    protected virtual void ComputeGravityForce()
+    {
+        gravityForce = gravityConstant * gravityScale * (rigidbody.mass * world.GetMass()) / vectorToGravityCenter.sqrMagnitude;
+        // Debug.Log("Force: " + gravityForce);
+        // Debug.Log("Velocity: " + rigidbody.velocity.magnitude);
+        // Debug.Log("Distance: " + vectorToGravityCenter.magnitude);
+
+        float distancetoGravityCenterWithShipOffset = vectorToGravityCenter.magnitude + gameObject.transform.localScale.y;
+
+        float offsetConstant = 1.9f;
+        if (distancetoGravityCenterWithShipOffset > world.GetRadius() + gameObject.transform.localScale.y * offsetConstant)
+        {
+            float diff = Mathf.Abs(distancetoGravityCenterWithShipOffset - world.GetRadius() - (gameObject.transform.localScale.y * offsetConstant));
+            gravityForce += distancetoGravityCenterWithShipOffset - world.GetRadius() * diff;
+            gravityForce += Mathf.Pow(distancetoGravityCenterWithShipOffset - world.GetRadius(), diff);
+            // Debug.Log("Force2: " + gravityForce);
+        }
+    }
+
     private void ApplyGravity()
     {
-        float gravityForce = gravityConstant * gravityScale * (rigidbody.mass * world.GetMass()) / vectorToGravityCenter.magnitude;
-        //Debug.Log("Distance: " + vectorToGravityCenter.magnitude + " Force: " + gravityForce);
-      //  GUI.Button(Rect);
-
-    //    rigidbody.AddForce(gravityDirection * world.GetDiameter() * 0.2f, ForceMode.Acceleration);
         rigidbody.AddForce(gravityDirection * gravityForce, ForceMode.Acceleration);
     }
 
@@ -75,6 +91,6 @@ public abstract class EntityMovement : BaseClass
 
     protected virtual void PreventOrbiting()
     {
-       // transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.55f);
+        transform.position = world.GetPointOn(transform.position, transform.localScale.y * 0.5f);
     }
 }
