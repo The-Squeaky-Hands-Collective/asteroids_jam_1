@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114037080271904158}
   - component: {fileID: 114550968938455950}
   - component: {fileID: 114734976052013420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skott _)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,11 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fd9167335f81641bb9f48711026635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardAcceleration: 18
+  forwardAcceleration: 25
   leftTurnAcceleration: 10
   rightTurnAcceleration: 10
-  maxAllowedVelocity: 30
-  maximumOrbitValueBeforeIncreasedGravity: 10
+  maxAllowedVelocity: 45
 --- !u!114 &114550968938455950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab2c4a67248f984daaca5bb03159208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   damage: 1
+  selfDamage: 10000
 --- !u!136 &136158456488105862
 CapsuleCollider:
   m_ObjectHideFlags: 1

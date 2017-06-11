@@ -21,14 +21,13 @@ public class MovingObject : BaseClass {
     {
         //transform.position = Vector3.Lerp(transform.position, world.GetPointOn(transform.position), Time.deltaTime * 2); //placera mig på spheren
 
-
-    }
-
-    void FixedUpdate () {
-        if(Vector3.Distance(transform.position, world.GetPointOn(transform.position)) > (transform.localScale.x*0.61f))
+        if (Vector3.Distance(transform.position, world.GetPointOn(transform.position)) > (transform.localScale.x * 0.61f))
         {
             MoveToGround();
         }
+    }
+
+    void FixedUpdate () {
 
         CalculateVelocity();
     }
@@ -44,8 +43,9 @@ public class MovingObject : BaseClass {
 
     void MoveToGround()
     {
-        Vector3 dir = (world.GetPointOn(transform.position) - transform.position).normalized;
-        transform.position += dir * 2 * Time.fixedDeltaTime;
+        //Vector3 dir = (world.GetPointOn(transform.position) - transform.position).normalized;
+        //transform.position += dir * 2 * Time.deltaTime;
+        transform.position = world.GetPointOn(transform.position);
     }
 
     //void AddGravity()

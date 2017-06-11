@@ -24,17 +24,22 @@ public class PlayerMovement : EntityMovement
         base.Start();
     }
 
-    protected override void FixedUpdate()
+     void Update()
     {
-        base.FixedUpdate();
-
-        if(availablePlayerActions.shoot.WasPressed)
+        if (availablePlayerActions.shoot.WasPressed)
         {
             Vector3 projectilePosition = (projectileOriginPositionObject.transform.position + projectileOriginPositionObject.transform.forward * projectileFrontOffset);
             GameObject projectile = Instantiate(projectileTemplate, projectilePosition, projectileTemplate.transform.localRotation);
             projectile.transform.forward = projectileOriginPositionObject.transform.forward;
             projectile.SetActive(true);
         }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+
     }
 
     protected override void ComputeForces()

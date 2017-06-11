@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 23591340122497142}
   - component: {fileID: 54742052212881018}
   - component: {fileID: 114409072750331232}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fea993455e0084d989912bb303700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardAcceleration: 15
+  forwardAcceleration: 35
   leftTurnAcceleration: 10
   rightTurnAcceleration: 10
   maxAllowedVelocity: 30
