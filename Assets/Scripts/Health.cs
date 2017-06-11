@@ -45,6 +45,8 @@ public class Health : BaseClass
         PlayerMovement player = GetComponent<PlayerMovement>();
         if (player != null)
         {
+            //restart! kalla LevelLoader o restarta scenen
+            
             return;
         }
 
