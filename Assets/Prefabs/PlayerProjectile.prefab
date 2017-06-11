@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966984
   damage: 1
   selfDamage: 10000
 --- !u!136 &136158456488105862

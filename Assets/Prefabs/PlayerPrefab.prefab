@@ -1227,10 +1227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardAcceleration: 35
-  leftTurnAcceleration: 10
-  rightTurnAcceleration: 10
   maxAllowedVelocity: 30
   keybindingManager: {fileID: 114608898577216746}
+  leftTurnAcceleration: 10
+  rightTurnAcceleration: 10
   projectileTemplate: {fileID: 1635054236661830, guid: 1ac476a44ca9d3743ace883f90d248a3,
     type: 2}
   projectileOriginPositionObject: {fileID: 1611772398205234}
