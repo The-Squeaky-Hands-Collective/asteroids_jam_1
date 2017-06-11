@@ -9,6 +9,10 @@ public class PlayerMovement : EntityMovement
     // Input
     public KeybindingManager keybindingManager;
 
+    // Steering
+    public float leftTurnAcceleration;
+    public float rightTurnAcceleration;
+
     // Projectiles
     public GameObject projectileTemplate;
     public GameObject projectileOriginPositionObject;

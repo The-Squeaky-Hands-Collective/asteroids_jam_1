@@ -8,8 +8,6 @@ public abstract class EntityMovement : BaseClass
 {
     // Forces
     public float forwardAcceleration;
-    public float leftTurnAcceleration;
-    public float rightTurnAcceleration;
     public float maxAllowedVelocity;
 
     // Object
