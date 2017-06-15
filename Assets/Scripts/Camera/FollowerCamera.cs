@@ -16,13 +16,22 @@ public class FollowerCamera : MonoBehaviour
 
     private int cameraType = 0;
     private Vector3 localUp = Vector3.zero;
+    private Vector3 anotherUp = Vector3.zero;
+    private Transform desiredTransform;
+
+    private void Awake()
+    {
+        desiredTransform = new GameObject().transform;
+        desiredTransform.transform.position = Vector3.zero;
+        desiredTransform.localRotation = Quaternion.identity;
+    }
 
     private void OnGUI()
     {
         if (GUI.Button(new Rect(10, 10, 20, 20), cameraType.ToString(), GUIStyle.none))
         {
             ++cameraType;
-            if (cameraType == 3)
+            if (cameraType == 5)
             {
                 cameraType = 0;
             }
@@ -43,9 +52,31 @@ public class FollowerCamera : MonoBehaviour
 
         localUp = Vector3.Lerp(localUp, objectToFollow.transform.forward, Time.deltaTime);
 
-        if (cameraType == 0) transform.LookAt(objectToFollow.transform.position);
-        if (cameraType == 1) transform.LookAt(objectToFollow.transform.position, objectToFollow.transform.forward);
-        if (cameraType == 2) transform.LookAt(objectToFollow.transform.position, localUp);
+        if (Vector3.Dot(objectToFollow.transform.forward, Vector3.down) > 0)
+        {
+            anotherUp = Vector3.Lerp(anotherUp, Vector3.down, Time.deltaTime * 0.1f);
+        }
+        else
+        {
+            anotherUp = Vector3.Lerp(anotherUp, Vector3.up, Time.deltaTime * 0.1f);
+        }
+
+        desiredTransform.position = transform.position;
+        desiredTransform.LookAt(objectToFollow.transform);
+
+        if (cameraType == 0) transform.LookAt(objectToFollow.transform);
+        if (cameraType == 1) transform.LookAt(objectToFollow.transform, objectToFollow.transform.forward);
+        if (cameraType == 2) transform.LookAt(objectToFollow.transform, localUp);
+        if (cameraType == 3) transform.LookAt(objectToFollow.transform, anotherUp);
+        if (cameraType == 4)
+        {
+            //Debug.Log("Quaternion.Angle(transform.rotation, desiredTransform.rotation): " + Quaternion.Angle(transform.rotation, desiredTransform.rotation));
+
+            float a = Quaternion.Angle(transform.rotation, desiredTransform.rotation);
+            a = Mathf.Clamp(a, 1f, 180f);
+            a *= 0.1f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredTransform.rotation, Time.deltaTime*6.0f);
+        }
     }
 
     private void ComputeDesiredPosition()
