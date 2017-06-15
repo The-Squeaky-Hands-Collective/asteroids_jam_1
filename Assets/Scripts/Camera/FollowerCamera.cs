@@ -14,6 +14,21 @@ public class FollowerCamera : MonoBehaviour
     private Vector3 desiredPositionForCamera = Vector3.zero;
     private float movementIncrease = 0;
 
+    private int cameraType = 0;
+    private Vector3 localUp = Vector3.zero;
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 20, 20), cameraType.ToString(), GUIStyle.none))
+        {
+            ++cameraType;
+            if (cameraType == 3)
+            {
+                cameraType = 0;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         ComputeDesiredPosition();
@@ -25,7 +40,12 @@ public class FollowerCamera : MonoBehaviour
         }
 
         MoveTowardsDesiredPosition();
-        transform.LookAt(objectToFollow.transform.position);
+
+        localUp = Vector3.Lerp(localUp, objectToFollow.transform.forward, Time.deltaTime);
+
+        if (cameraType == 0) transform.LookAt(objectToFollow.transform.position);
+        if (cameraType == 1) transform.LookAt(objectToFollow.transform.position, objectToFollow.transform.forward);
+        if (cameraType == 2) transform.LookAt(objectToFollow.transform.position, localUp);
     }
 
     private void ComputeDesiredPosition()
