@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rasmus TODO, split into camera modules which allows easier change and/or modification without changing the other ones.
+/// Camera volumes? Volumes that affect how the camera is used.
+/// Camera powerups, which changes camera attributes and/or types.
+/// Multiple focus points which is used to interpolate the camera's desired position and/or rotation.
+/// Another camera idea is to follow vehicle's acceleration's direction.
+/// Continue on version 2 and 4 primarly.
+/// </summary>
 public class FollowerCamera : MonoBehaviour
 {
     public GameObject objectToFollow;
@@ -70,12 +78,12 @@ public class FollowerCamera : MonoBehaviour
         if (cameraType == 3) transform.LookAt(objectToFollow.transform, anotherUp);
         if (cameraType == 4)
         {
-            //Debug.Log("Quaternion.Angle(transform.rotation, desiredTransform.rotation): " + Quaternion.Angle(transform.rotation, desiredTransform.rotation));
+            // Debug.Log("Quaternion.Angle(transform.rotation, desiredTransform.rotation): " + Quaternion.Angle(transform.rotation, desiredTransform.rotation));
 
             float a = Quaternion.Angle(transform.rotation, desiredTransform.rotation);
             a = Mathf.Clamp(a, 1f, 180f);
             a *= 0.1f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredTransform.rotation, Time.deltaTime*6.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredTransform.rotation, Time.deltaTime * 6.0f);
         }
     }
 
